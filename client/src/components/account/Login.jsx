@@ -1,16 +1,31 @@
 import { Button, Input } from "@material-tailwind/react";
 import React, { useState } from "react";
+const API = require("../../service/api")
 
 const Login = () => {
   const [account, setAccount] = useState("true");
+  const [signUp, setSignUp] = useState({
+    name: "",
+    username: "",
+    password: "",
+  });
 
   const handleAccount = () => {
     setAccount(!account);
   };
+
+  const onInputchange = (e) => {
+    console.log(e.target.name, e.target.value);
+    setSignUp({ ...signUp, [e.target.name]: [e.target.value] });
+  };
+
+  const signUpUser = async () => {
+    
+  }
   return (
     <>
       {account ? (
-        <div className="w-[400px] m-auto shadow-md shadow-black ">
+        <div className="w-[400px] m-auto shadow-md shadow-black min-w-[300px] sm:min-w-[400px] lg:min-w-[500px]">
           <div className="flex justify-center pt-5">
             <img
               src="/blog.png"
@@ -42,7 +57,7 @@ const Login = () => {
           </div>
         </div>
       ) : (
-        <div className="w-[400px] m-auto shadow-md shadow-black ">
+        <div className="w-[400px] m-auto shadow-md shadow-black min-w-[300px] sm:min-w-[400px] lg:min-w-[500px]">
           <div className="flex justify-center pt-5">
             <img
               src="/blog.png"
@@ -55,19 +70,25 @@ const Login = () => {
             <Input
               label="Enter Name"
               className="text-gray-800 focus:border-[#00373C]"
+              onChange={(e) => onInputchange(e)}
+              name="name"
             />
             <Input
               label="Enter username"
               className="text-gray-800 focus:border-[#00373C]"
+              onChange={(e) => onInputchange(e)}
+              name="username"
             />
             <Input
               label="Enter  password"
               className="text-gray-800 focus:border-[#00373C] "
+              onChange={(e) => onInputchange(e)}
+              name="password"
             />
 
-            <Button className="bg-[#00373C]">Sign Up</Button>
+            <Button onClick={()=>signUpUser()} className="bg-[#00373C]">Sign Up</Button>
 
-            <pc className="text-center">Or</pc>
+            <p className="text-center">Or</p>
 
             <Button
               onClick={() => handleAccount()}
