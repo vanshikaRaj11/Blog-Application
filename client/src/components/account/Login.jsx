@@ -1,6 +1,7 @@
 import { Button, Input } from "@material-tailwind/react";
 import React, { useState } from "react";
-const API = require("../../service/api")
+import { API } from "../../service/api";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [account, setAccount] = useState("true");
@@ -16,14 +17,32 @@ const Login = () => {
 
   const onInputchange = (e) => {
     console.log(e.target.name, e.target.value);
-    setSignUp({ ...signUp, [e.target.name]: [e.target.value] });
+    setSignUp({ ...signUp, [e.target.name]: e.target.value });
   };
 
   const signUpUser = async () => {
-    
-  }
+    try {
+      let response = await API.userSignup(signUp);
+      console.log(response);
+      
+      if (response.isSuccess) {
+        toast.success("Sign up successful!");
+        setSignUp({
+          name: "",
+          username: "",
+          password: "",
+        });
+        setAccount(!account); // Switch back to login on success
+      } else {
+          toast.error(response?.msg || "Sign up failed. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    }
+  };
   return (
     <>
+     
       {account ? (
         <div className="w-[400px] m-auto shadow-md shadow-black min-w-[300px] sm:min-w-[400px] lg:min-w-[500px]">
           <div className="flex justify-center pt-5">
@@ -86,7 +105,9 @@ const Login = () => {
               name="password"
             />
 
-            <Button onClick={()=>signUpUser()} className="bg-[#00373C]">Sign Up</Button>
+            <Button onClick={() => signUpUser()} className="bg-[#00373C]">
+              Sign Up
+            </Button>
 
             <p className="text-center">Or</p>
 
