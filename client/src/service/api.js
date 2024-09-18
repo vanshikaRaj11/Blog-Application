@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const { CONSTANTS, SERVICE_URLS } = require("../constants/config");
-const URL = "https://localhost:8000";
+const URL = process.env.REACT_APP_URL;
 
 const axiosInstance = axios.create({
   baseURL: URL,
@@ -9,6 +9,7 @@ const axiosInstance = axios.create({
   headers: {
     "content-type": "application/json",
   },
+  
 });
 
 axiosInstance.interceptors.request.use(
@@ -76,7 +77,7 @@ const API = {};
 
 for (const [key, value] of Object.entries(SERVICE_URLS)) {
   API[key] = (body, showUploadProgress, showDownloadProgress) => {
-    axiosInstance({
+    return axiosInstance({
       method: value.method,
       url: value.url,
       data: body,
