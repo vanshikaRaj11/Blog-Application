@@ -12,9 +12,10 @@ import {
   Outlet,
 } from "react-router-dom";
 
-const privateRoute = ({ isAuthenticated, ...props }) => {
+const PrivateRoute = ({ isAuthenticated, ...props }) => {
   return isAuthenticated ? (
     <>
+      <Header className="w-full" />
       <Outlet />
     </>
   ) : (
@@ -26,7 +27,6 @@ function App() {
   return (
     <DataProvider>
       <BrowserRouter>
-        <Header className="w-full" />
         <div className="mt-10">
           <Routes>
             <Route
@@ -35,7 +35,7 @@ function App() {
             />
             <Route
               path="/"
-              element={<privateRoute isAuthenticated={isAuthenticated} />}
+              element={<PrivateRoute isAuthenticated={isAuthenticated} />}
             >
               <Route path="/" element={<Home />} />
             </Route>

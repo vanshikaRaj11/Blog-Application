@@ -82,7 +82,7 @@ const Header = () => {
   }, []);
 
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-6 py-1 mt-5 bg-[#00373C]">
+    <Navbar className="mx-auto max-w-screen-xl px-6 py-1 bg-[#00373C]">
       <div className="flex items-center justify-between">
               <img src="/removeBlog.png" alt="logo"  className="w-[70px] h-[70px] rounded-full"/>
         <div className="hidden lg:block">
