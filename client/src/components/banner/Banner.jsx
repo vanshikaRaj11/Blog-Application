@@ -3,7 +3,7 @@ import { Typography } from "@material-tailwind/react";
 const Banner = () => {
   return (
     <div
-      className="w-full h-[50vh] flex flex-col items-center justify-center bg-[url('https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg')] bg-center bg-repeat-x bg-cover"
+      className="w-full h-[70vh] flex flex-col items-center justify-center bg-[url('https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg')] bg-center bg-repeat-x bg-cover"
       style={{ backgroundSize: "55%", backgroundColor: "#000" }}
     >
       <Typography variant="h1" className="text-white text-[70px] leading-tight">

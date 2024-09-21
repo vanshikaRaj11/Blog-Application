@@ -11,6 +11,7 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
+import CreatePosts from "./create/CreatePosts";
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   return isAuthenticated ? (
@@ -27,7 +28,7 @@ function App() {
   return (
     <DataProvider>
       <BrowserRouter>
-        <div className="mt-10">
+        <div>
           <Routes>
             <Route
               path="/login"
@@ -38,6 +39,13 @@ function App() {
               element={<PrivateRoute isAuthenticated={isAuthenticated} />}
             >
               <Route path="/" element={<Home />} />
+            </Route>
+
+            <Route
+              path="/create"
+              element={<PrivateRoute isAuthenticated={isAuthenticated} />}
+            >
+              <Route path="/create" element={<CreatePosts />} />
             </Route>
           </Routes>
         </div>

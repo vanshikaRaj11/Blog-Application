@@ -2,14 +2,14 @@ import axios from "axios";
 
 const { CONSTANTS, SERVICE_URLS } = require("../constants/config");
 const URL = process.env.REACT_APP_URL;
+const { getAccessToken } = require("../utils/commonUtils");
 
 const axiosInstance = axios.create({
   baseURL: URL,
   timeout: 10000,
-  headers: {
-    "content-type": "application/json",
-  },
-  
+  // headers: {
+  //   "content-type": "application/json",
+  // },
 });
 
 axiosInstance.interceptors.request.use(
@@ -47,24 +47,24 @@ const processResponse = (response) => {
 
 const processError = (error) => {
   if (error.response) {
-    //request made and server responded with status other than 200
-    console.log("Error in response :", error.toJSON());
+    // request made and server responded with status other than 200
+    console.log("Error in response: ", error.response); // Fix here
     return {
       isTrue: true,
       msg: CONSTANTS.responseFailure,
-      code: error.response.data,
+      code: error.response.data, // You might want to use error.response.status here as well
     };
   } else if (error.request) {
-    //request made but no response was received
-    console.log("Error in request :", error.toJSON());
+    // request made but no response was received
+    console.log("Error in request: ", error.request); // Fix here
     return {
       isTrue: true,
       msg: CONSTANTS.requestFailure,
-      code: "",
+      code: "", // No response data, so empty code
     };
   } else {
-    //something happened in setting up requesst that triggers an error
-    console.log("Error in network :", error.toJSON());
+    // something happened in setting up the request that triggered an error
+    console.log("Error in network: ", error.message); // Fix here
     return {
       isTrue: true,
       msg: CONSTANTS.networkError,
@@ -72,6 +72,7 @@ const processError = (error) => {
     };
   }
 };
+
 
 const API = {};
 
@@ -82,6 +83,7 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
       url: value.url,
       data: body,
       responseType: value.responseType,
+      headers: { authorization: getAccessToken() },
       onUploadProgress: function (progressEvent) {
         if (showUploadProgress) {
           let percentCompleted = Math.round(

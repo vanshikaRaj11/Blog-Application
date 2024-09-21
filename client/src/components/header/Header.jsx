@@ -14,12 +14,12 @@ const NavList = () => {
       <Typography
         as="li"
         variant="small"
-        color="white"
+        color="black"
         className="p-1 font-medium uppercase"
       >
         <Link
           to="/"
-          className="flex items-center hover:text-[#C8A25F] transition-colors"
+          className="flex items-center hover:text-[#00373C] transition-colors"
         >
           Home
         </Link>
@@ -27,12 +27,12 @@ const NavList = () => {
       <Typography
         as="li"
         variant="small"
-        color="white"
+        color="black"
         className="p-1 font-medium uppercase"
       >
         <Link
           to="about"
-          className="flex items-center hover:text-[#C8A25F] transition-colors"
+          className="flex items-center hover:text-[#00373C] transition-colors"
         >
           About
         </Link>
@@ -40,12 +40,12 @@ const NavList = () => {
       <Typography
         as="li"
         variant="small"
-        color="white"
+        color="black"
         className="p-1 font-medium uppercase"
       >
-        <Link to 
-          ="/contact"
-          className="flex items-center hover:text-[#C8A25F] transition-colors"
+        <Link
+          to="/contact"
+          className="flex items-center hover:text-[#00373C] transition-colors"
         >
           Contact
         </Link>
@@ -53,12 +53,12 @@ const NavList = () => {
       <Typography
         as="li"
         variant="small"
-        color="white"
+        color="black"
         className="p-1 font-medium uppercase"
       >
         <Link
           to="/login"
-          className="flex items-center hover:text-[#C8A25F] transition-colors"
+          className="flex items-center hover:text-[#00373C] transition-colors"
         >
           Logout
         </Link>
@@ -82,9 +82,9 @@ const Header = () => {
   }, []);
 
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-6 py-1 bg-[#00373C]">
+    <Navbar className="mx-auto w-full px-6 py-1 bg-white bg-opacity-100 rounded-none">
       <div className="flex items-center justify-between">
-              <img src="/removeBlog.png" alt="logo"  className="w-[70px] h-[70px] rounded-full"/>
+              <img src="/blog.png" alt="logo"  className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full"/>
         <div className="hidden lg:block">
           <NavList />
         </div>
@@ -95,9 +95,9 @@ const Header = () => {
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            <XMarkIcon className="h-6 w-6 text-black" strokeWidth={2} />
           ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            <Bars3Icon className="h-6 w-6 text-black" strokeWidth={2} />
           )}
         </IconButton>
       </div>
