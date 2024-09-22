@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Home from "./components/account/home/Home";
+import Home from "./components/home/Home";
 import Login from "./components/account/Login";
 import Header from "./components/header/Header";
 import DataProvider from "./context/DataProvider";
@@ -12,6 +12,8 @@ import {
   Outlet,
 } from "react-router-dom";
 import CreatePosts from "./create/CreatePosts";
+import DetailView from "./components/details/DetailView";
+import UpdatePost from "./create/UpdatePost";
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   return isAuthenticated ? (
@@ -46,6 +48,20 @@ function App() {
               element={<PrivateRoute isAuthenticated={isAuthenticated} />}
             >
               <Route path="/create" element={<CreatePosts />} />
+            </Route>
+
+            <Route
+              path="/details/:id"
+              element={<PrivateRoute isAuthenticated={isAuthenticated} />}
+            >
+              <Route path="/details/:id" element={<DetailView />} />
+            </Route>
+
+            <Route
+              path="/update/:id"
+              element={<PrivateRoute isAuthenticated={isAuthenticated} />}
+            >
+              <Route path="/update/:id" element={<UpdatePost />} />
             </Route>
           </Routes>
         </div>

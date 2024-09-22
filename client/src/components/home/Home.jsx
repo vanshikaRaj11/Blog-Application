@@ -1,6 +1,7 @@
 import React from "react";
-import Banner from "../../banner/Banner";
+import Banner from "../banner/Banner";
 import Category from "./Category";
+import Posts from "./post/Posts";
 
 const Home = () => {
   return (
@@ -10,6 +11,9 @@ const Home = () => {
         {/* Categories Section */}
         <div className="lg:col-span-2 sm:col-span-2 col-span-12">
           <Category />{" "}
+        </div>
+        <div className="lg:col-span-10 sm:col-span-10 col-span-12">
+          <Posts />
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const { CONSTANTS, SERVICE_URLS } = require("../constants/config");
 const URL = process.env.REACT_APP_URL;
-const { getAccessToken } = require("../utils/commonUtils");
+const { getAccessToken, getType } = require("../utils/commonUtils");
 
 const axiosInstance = axios.create({
   baseURL: URL,
@@ -14,6 +14,11 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   function (config) {
+    if (config.TYPE.params) {
+      config.params = config.TYPE.params;
+    } else if (config.TYPE.query) {
+      config.url = config.url + "/" + config.TYPE.query;
+    }
     return config;
   },
   function (error) {
@@ -28,7 +33,8 @@ axiosInstance.interceptors.response.use(
   },
   function (error) {
     // Stop global loader here
-    return Promise.reject(processError(error));
+    const processedError = processError(error);
+    return Promise.reject(processedError);
   }
 );
 
@@ -48,7 +54,7 @@ const processResponse = (response) => {
 const processError = (error) => {
   if (error.response) {
     // request made and server responded with status other than 200
-    console.log("Error in response: ", error.response); // Fix here
+    console.log("Error in response: ", JSON.stringify(error.response.data)); // Fix here
     return {
       isTrue: true,
       msg: CONSTANTS.responseFailure,
@@ -73,7 +79,6 @@ const processError = (error) => {
   }
 };
 
-
 const API = {};
 
 for (const [key, value] of Object.entries(SERVICE_URLS)) {
@@ -81,9 +86,10 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
     return axiosInstance({
       method: value.method,
       url: value.url,
-      data: body,
+      data: value.method === "DELETE" ? {} : body,
       responseType: value.responseType,
       headers: { authorization: getAccessToken() },
+      TYPE: getType(value, body),
       onUploadProgress: function (progressEvent) {
         if (showUploadProgress) {
           let percentCompleted = Math.round(

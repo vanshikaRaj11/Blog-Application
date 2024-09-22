@@ -2,8 +2,7 @@ import { Button } from "@material-tailwind/react";
 import { Link, useSearchParams } from "react-router-dom";
 // import { categories } from "../../../constants/config";
 
-
- const categories = [
+const categories = [
   { id: 1, type: "Music" },
   { id: 2, type: "Movies" },
   { id: 3, type: "Sports" },
