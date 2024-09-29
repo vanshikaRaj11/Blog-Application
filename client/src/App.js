@@ -14,6 +14,8 @@ import {
 import CreatePosts from "./create/CreatePosts";
 import DetailView from "./components/details/DetailView";
 import UpdatePost from "./create/UpdatePost";
+import About from "./components/about/About";
+import Contact from "./components/contact/Contact";
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   return isAuthenticated ? (
@@ -27,6 +29,7 @@ const PrivateRoute = ({ isAuthenticated, ...props }) => {
 };
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   return (
     <DataProvider>
       <BrowserRouter>
@@ -62,6 +65,20 @@ function App() {
               element={<PrivateRoute isAuthenticated={isAuthenticated} />}
             >
               <Route path="/update/:id" element={<UpdatePost />} />
+            </Route>
+
+            <Route
+              path="/about"
+              element={<PrivateRoute isAuthenticated={isAuthenticated} />}
+            >
+              <Route path="/about" element={<About />} />
+            </Route>
+
+            <Route
+              path="/contact"
+              element={<PrivateRoute isAuthenticated={isAuthenticated} />}
+            >
+              <Route path="/contact" element={<Contact />} />
             </Route>
           </Routes>
         </div>

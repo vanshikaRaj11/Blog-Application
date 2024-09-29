@@ -24,6 +24,7 @@ const NavList = () => {
           Home
         </Link>
       </Typography>
+
       <Typography
         as="li"
         variant="small"
@@ -31,12 +32,13 @@ const NavList = () => {
         className="p-1 font-medium uppercase"
       >
         <Link
-          to="about"
+          to="/about"
           className="flex items-center hover:text-[#00373C] transition-colors"
         >
           About
         </Link>
       </Typography>
+
       <Typography
         as="li"
         variant="small"
@@ -50,6 +52,7 @@ const NavList = () => {
           Contact
         </Link>
       </Typography>
+      
       <Typography
         as="li"
         variant="small"

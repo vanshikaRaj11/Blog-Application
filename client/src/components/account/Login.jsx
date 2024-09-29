@@ -81,9 +81,9 @@ const Login = ({ setIsAuthenticated }) => {
     }
   };
   return (
-    <>
+    <div className="flex items-center justify-center min-h-screen">
       {account ? (
-        <div className="w-[400px] m-auto shadow-md shadow-black min-w-[300px] sm:min-w-[400px] lg:min-w-[500px]">
+        <div className="w-[300px] mt-16 m-auto shadow-md shadow-black min-w-[300px] sm:min-w-[400px] lg:min-w-[500px]">
           <div className="flex justify-center pt-5">
             <img
               src="/blog.png"
@@ -167,7 +167,7 @@ const Login = ({ setIsAuthenticated }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

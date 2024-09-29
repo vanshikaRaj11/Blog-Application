@@ -28,7 +28,7 @@ const Comments = ({ post }) => {
       if (response.isSuccess) {
         setComments(response.data);
       }
-    };
+    }
     getData();
   }, [toggle, post]);
 

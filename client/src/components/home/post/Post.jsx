@@ -10,22 +10,24 @@ const Post = ({ post }) => {
   };
 
    return (
-    <div className="border border-gray-200 rounded-lg p-4 flex flex-col items-start h-[400px]">
-      <img
-        src={url}
-        alt="post"
-        className="w-full h-[180px] object-cover rounded-t-lg mb-4"
-      />
-      <p className="text-gray-400 text-xs mb-1">{post.categories || "Uncategorized"}</p>
-      <h2 className="text-lg font-semibold mb-1 text-gray-800">
-        {addEllipsis(post.title, 25)}
-      </h2>
-      <p className="text-gray-500 text-sm mb-2">Author: {post.username}</p>
-      <p className="text-gray-700 text-sm leading-tight mb-4">
-        {addEllipsis(post.description, 80)}
-      </p>
-    </div>
-  );
+     <div className="border border-gray-200 rounded-lg p-4 flex flex-col items-start shadow-md hover:shadow-xl transition-shadow duration-300 h-[450px]">
+       <img
+         src={url}
+         alt="post"
+         className="w-full h-auto object-cover mb-4"
+       />
+       <p className="text-gray-400 text-xs mb-1 uppercase tracking-widest">
+         {post.categories || "Uncategorized"}
+       </p>
+       <h2 className="text-xl font-semibold mb-1 text-gray-800">
+         {addEllipsis(post.title, 25)}
+       </h2>
+       <p className="text-gray-500 text-sm mb-2">Author: {post.username}</p>
+       <p className="text-gray-700 text-sm leading-snug mb-4">
+         {addEllipsis(post.description, 80)}
+       </p>
+     </div>
+   );
 
 };
 
