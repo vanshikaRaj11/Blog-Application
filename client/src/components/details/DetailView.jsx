@@ -46,11 +46,15 @@ const DetailView = () => {
       <div className="flex justify-end mb-4">
         {user.username === post.username && (
           <div className="flex space-x-4">
-            <Link to={`/update/${post._id}`} className="text-blue-500">
-              <MdEdit className="w-6 h-6 cursor-pointer" />
+            <Link to={`/update/${post._id}`}>
+              <MdEdit
+                className="w-6 h-6 cursor-pointer "
+                style={{ color: "#00373C" }}
+              />
             </Link>
             <MdDelete
-              className="w-6 h-6 text-red-500 cursor-pointer"
+              className="w-6 h-6 cursor-pointer text-red-800"
+              
               onClick={deleteBlog}
             />
           </div>
@@ -72,7 +76,7 @@ const DetailView = () => {
       </div>
 
       {/* Post Description */}
-      <p className="text-gray-800 leading-relaxed mb-6">{post.description}</p>
+      <p className="text-gray-800 leading-relaxed mb-6 text-center md:text-left">{post.description}</p>
 
       {/* Comments Section */}
       <Comments post={post} />

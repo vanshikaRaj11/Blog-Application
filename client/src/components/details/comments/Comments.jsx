@@ -28,7 +28,7 @@ const Comments = ({ post }) => {
       if (response.isSuccess) {
         setComments(response.data);
       }
-    }
+    };
     getData();
   }, [toggle, post]);
 
@@ -49,26 +49,25 @@ const Comments = ({ post }) => {
 
   return (
     <div>
-      <div className="mt-24 flex">
+      <div className="mt-24 flex flex-col md:flex-row gap-2 p-2">
         {/* Profile image */}
         <img
           src={url}
           alt="profile"
-          className="w-12 h-12 rounded-full object-cover"
+          className="w-12 h-12 rounded-full object-cover "
         />
 
         {/* Comment textarea */}
         <Textarea
-          className="ml-4 w-full"
+          className="w-full p-2"
           label="What's on your mind?"
           value={comment.comments}
           onChange={(e) => handleChange(e)}
           rows={5}
         />
-
         {/* Post button */}
         <button
-          className="ml-4 h-10 bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 transition-all"
+          className="h-10 bg-[#00373C] text-white rounded-md px-4 py-2 hover:bg-[#00373C] transition-all md:h-12 md:px-6 lg:h-14 lg:px-8 flex justify-center items-center"
           onClick={addComment}
         >
           Post

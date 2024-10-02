@@ -17,10 +17,9 @@ const getComments = async (request, response) => {
 
     response.status(200).json(comments);
   } catch (error) {
-    response.status(500).json({ message: error.message });
+    response.status(500).json(error);
   }
 };
-
 const deleteComment = async (request, response) => {
   try {
     const comment = await Comment.findById(request.params.id);

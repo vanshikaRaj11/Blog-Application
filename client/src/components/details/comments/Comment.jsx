@@ -25,7 +25,7 @@ const Comment = ({ comment, setToggle }) => {
         {/* Delete icon (only for the author of the comment) */}
         {comment.name === user.username && (
           <MdDelete
-            className="w-5 h-5 ml-auto cursor-pointer text-gray-600 hover:text-red-600"
+            className="w-5 text-gray-500 h-5 ml-auto cursor-pointer hover:text-red-900"
             onClick={removeComment}
           />
         )}
