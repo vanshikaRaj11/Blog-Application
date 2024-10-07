@@ -26,6 +26,7 @@ const DetailView = () => {
       }
     };
     fetchData();
+    
   }, []);
 
   const deleteBlog = async () => {

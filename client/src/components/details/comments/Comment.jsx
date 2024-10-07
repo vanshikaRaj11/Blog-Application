@@ -8,7 +8,7 @@ const Comment = ({ comment, setToggle }) => {
 
   const removeComment = async () => {
     await API.deleteComment(comment._id);
-    setToggle((prevState) => !prevState);
+    setToggle(prevState => !prevState);
   };
 
   return (

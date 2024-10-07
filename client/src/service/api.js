@@ -52,12 +52,12 @@ const processResponse = (response) => {
   }
 };
 
-const processError = (error) => {
+const processError =  async (error) => {
   if (error.response) {
     // request made and server responded with status other than 200
     console.log("Error in response: ", JSON.stringify(error.response.data)); // Fix here
     return {
-      isTrue: true,
+      isError: true,
       msg: CONSTANTS.responseFailure,
       code: error.response.data, // You might want to use error.response.status here as well
     };
@@ -65,7 +65,7 @@ const processError = (error) => {
     // request made but no response was received
     console.log("Error in request: ", error.request); // Fix here
     return {
-      isTrue: true,
+      isError: true,
       msg: CONSTANTS.requestFailure,
       code: "", // No response data, so empty code
     };
@@ -73,7 +73,7 @@ const processError = (error) => {
     // something happened in setting up the request that triggered an error
     console.log("Error in network: ", error.message); // Fix here
     return {
-      isTrue: true,
+      isError: true,
       msg: CONSTANTS.networkError,
       code: "",
     };

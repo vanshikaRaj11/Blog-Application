@@ -22,15 +22,26 @@ const Comments = ({ post }) => {
 
   const { user } = useContext(DataContext);
 
-  useEffect(() => {
-    const getData = async () => {
-      const response = await API.getAllComments(post._id);
-      if (response.isSuccess) {
-        setComments(response.data);
-      }
-    };
-    getData();
-  }, [toggle, post]);
+ useEffect(() => {
+   const getData = async () => {
+     try {
+       const response = await API.getAllComments(post._id);
+       if (response.isSuccess) {
+         setComments(response.data);
+       } else {
+         // Handle the error case, e.g., display an error message to the user
+         console.error(
+           "Error fetching comments:",
+           response.error || "Unknown error"
+         );
+       }
+     } catch (error) {
+       // Handle network errors or other exceptions
+       console.error("Error fetching comments:", error);
+     }
+   };
+   getData();
+ }, [toggle, post]);
 
   const handleChange = (e) => {
     setComment({
@@ -68,7 +79,7 @@ const Comments = ({ post }) => {
         {/* Post button */}
         <button
           className="h-10 bg-[#00373C] text-white rounded-md px-4 py-2 hover:bg-[#00373C] transition-all md:h-12 md:px-6 lg:h-14 lg:px-8 flex justify-center items-center"
-          onClick={addComment}
+          onClick={(e)=>addComment(e)}
         >
           Post
         </button>
