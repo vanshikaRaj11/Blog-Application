@@ -29,14 +29,12 @@ const Comments = ({ post }) => {
        if (response.isSuccess) {
          setComments(response.data);
        } else {
-         // Handle the error case, e.g., display an error message to the user
          console.error(
            "Error fetching comments:",
            response.error || "Unknown error"
          );
        }
      } catch (error) {
-       // Handle network errors or other exceptions
        console.error("Error fetching comments:", error);
      }
    };
