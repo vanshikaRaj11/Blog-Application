@@ -1,5 +1,5 @@
-import { IconButton, Typography} from "@material-tailwind/react"; // Material Tailwind components
-import {  FaInstagramSquare } from "react-icons/fa"; // Import icons from react-icons
+import { IconButton, Typography } from "@material-tailwind/react"; // Material Tailwind components
+import { FaInstagramSquare } from "react-icons/fa"; // Import icons from react-icons
 import { MdEmail } from "react-icons/md";
 
 const Contact = () => {
@@ -18,22 +18,7 @@ const Contact = () => {
         </Typography>
 
         <Typography variant="h5" className=" text-gray-800 mt-8">
-          Reach out to me on
-          <span className="ml-2">
-            <a
-              href="https://www.instagram.com/codeforinterview/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconButton variant="text">
-                <FaInstagramSquare
-                  className="text-2xl md:text-4xl"
-                  style={{ color: " #E1306C" }}
-                />
-              </IconButton>
-            </a>
-          </span>
-          or send me an email at
+          Reach out to me by sending me an email at
           <a
             href="mailto:vanshikavce19@gmail.com?Subject=This is a subject"
             target="_blank"

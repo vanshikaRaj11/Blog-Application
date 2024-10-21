@@ -8,7 +8,10 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
-const NavList = () => {
+const NavList = ({ setOpenNav }) => {
+  const handleNavItemClick = () => {
+    setOpenNav(false); // Close the navbar when an item is clicked
+  };
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -16,10 +19,12 @@ const NavList = () => {
         variant="small"
         color="black"
         className="p-1 font-medium uppercase"
+        onClick={handleNavItemClick}
       >
         <Link
           to="/"
           className="flex items-center hover:text-[#00373C] transition-colors"
+          onClick={handleNavItemClick}
         >
           Home
         </Link>
@@ -34,6 +39,7 @@ const NavList = () => {
         <Link
           to="/about"
           className="flex items-center hover:text-[#00373C] transition-colors"
+          onClick={handleNavItemClick}
         >
           About
         </Link>
@@ -48,11 +54,12 @@ const NavList = () => {
         <Link
           to="/contact"
           className="flex items-center hover:text-[#00373C] transition-colors"
+          onClick={handleNavItemClick}
         >
           Contact
         </Link>
       </Typography>
-      
+
       <Typography
         as="li"
         variant="small"
@@ -62,6 +69,7 @@ const NavList = () => {
         <Link
           to="/login"
           className="flex items-center hover:text-[#00373C] transition-colors"
+          onClick={handleNavItemClick}
         >
           Logout
         </Link>
@@ -87,9 +95,13 @@ const Header = () => {
   return (
     <Navbar className="mx-auto w-full px-6 py-1 bg-white bg-opacity-100 rounded-none">
       <div className="flex items-center justify-between">
-              <img src="/blog.png" alt="logo"  className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full"/>
+        <img
+          src="/blog.png"
+          alt="logo"
+          className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] rounded-full"
+        />
         <div className="hidden lg:block">
-          <NavList />
+          <NavList setOpenNav={setOpenNav}/>
         </div>
         <IconButton
           variant="text"
@@ -105,7 +117,7 @@ const Header = () => {
         </IconButton>
       </div>
       <Collapse open={openNav}>
-        <NavList />
+        <NavList setOpenNav={ setOpenNav } />
       </Collapse>
     </Navbar>
   );
